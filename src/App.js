@@ -1,25 +1,56 @@
-import logo from './logo.svg';
-import './App.css';
+import { useEffect, useState } from "react";
+import data from "./data";
+import Slides from "./Slides";
+import About from "./About";
+import Menu from "./Menu";
 
-function App() {
+const App = () => {
+  const [index, setIndex] = useState(0);
+  const [size, setSize] = useState(window.innerWidth);
+  const [showMenu, setShowMenu] = useState(false);
+
+  const checkSize = () => {
+    setSize(window.innerWidth);
+  };
+
+  const checkTarget = (e) => {
+    if (e.target.classList[0] === "container" || e.target.tagName === "A") {
+      setShowMenu(false);
+    }
+  };
+
+  useEffect(() => {
+    const lastIndex = data.length - 1;
+    if (index < 0) setIndex(lastIndex);
+    if (index > lastIndex) setIndex(0);
+    if (size > 580) setShowMenu(false);
+  }, [index, data, size]);
+
+  useEffect(() => {
+    window.addEventListener("resize", checkSize);
+    return () => {
+      window.removeEventListener("resize", checkSize);
+    };
+  });
+
+  useEffect(() => {
+    window.addEventListener("click", checkTarget);
+    return () => {
+      window.removeEventListener("click", checkTarget);
+    };
+  });
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+    <div className={`container ${showMenu ? "active" : ""}`}>
+      <header>
+        <Menu showMenu={showMenu} setShowMenu={setShowMenu} />
+        <Slides data={data} index={index} setIndex={setIndex} size={size} />
       </header>
+      <main>
+        <About />
+      </main>
     </div>
   );
-}
+};
 
 export default App;

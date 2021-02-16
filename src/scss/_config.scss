@@ -1,0 +1,25 @@
+@import url("https://fonts.googleapis.com/css2?family=Spartan:wght@500;600;700&display=swap");
+
+$Dark-Gray: hsl(0, 0%, 63%);
+$Black: hsl(0, 0%, 0%);
+$White: hsl(0, 0%, 100%);
+$Very-Dark-Gray: hsl(0, 0%, 27%);
+
+%tr {
+  transition: 0.3s ease;
+}
+
+$tablet: 768px;
+$mobile: 580px;
+
+@mixin tablet {
+  @media screen and(max-width: $tablet) {
+    @content;
+  }
+}
+
+@mixin mobile {
+  @media screen and(max-width: $mobile) {
+    @content;
+  }
+}

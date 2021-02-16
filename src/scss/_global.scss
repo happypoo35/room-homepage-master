@@ -1,0 +1,116 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Spartan", sans-serif;
+  font-weight: 500;
+  font-size: 0.75rem;
+  color: $Dark-Gray;
+}
+
+img {
+  display: block;
+}
+
+h1,
+h2,
+.info-btn {
+  color: $Black;
+}
+
+h1,
+.info-btn {
+  font-weight: 600;
+}
+
+h2,
+.info-btn {
+  text-transform: uppercase;
+}
+
+h1 {
+  font-size: clamp(1.75rem, 3vw, 2.5rem);
+  line-height: 1.1;
+  letter-spacing: -0.042em;
+}
+
+h2 {
+  font-size: inherit;
+  font-weight: 700;
+  line-height: 1.5;
+  letter-spacing: 0.416em;
+}
+
+p {
+  letter-spacing: -0.022em;
+  line-height: 1.66;
+}
+
+a {
+  text-decoration: none;
+  color: $White;
+  font-weight: 600;
+}
+
+// ---- Buttons ----- //
+
+button {
+  border: none;
+  outline: none;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: inherit;
+}
+
+.info-btn {
+  background: transparent;
+  letter-spacing: 0.83em;
+  @extend %tr;
+
+  svg {
+    margin-left: 1rem;
+    @extend %tr;
+
+    & * {
+      @extend %tr;
+    }
+  }
+
+  &:hover {
+    color: $Dark-Gray;
+
+    svg {
+      margin-left: 1.5rem;
+
+      & * {
+        fill: $Dark-Gray;
+      }
+    }
+  }
+}
+
+.slide-btn {
+  width: clamp(3.5rem, 5.7vw, 5rem);
+  height: clamp(3.5rem, 5.7vw, 5rem);
+  background: $Black;
+  transition: background 0.3s ease;
+
+  &:hover {
+    background: $Very-Dark-Gray;
+  }
+
+  svg {
+    width: clamp(0.625rem, 1vw, 0.875rem);
+  }
+
+  &.next {
+    svg {
+      transform: rotate(180deg);
+    }
+  }
+}

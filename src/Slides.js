@@ -3,7 +3,7 @@ import Buttons from "./Buttons";
 
 const Slides = ({ data, index, setIndex, size }) => {
   return (
-    <section className="slides-container">
+    <section className="slides-container" aria-label='slides'>
       {data.map((slide, slideIndex) => {
         const { id, img, imgM, title, text } = slide;
         let position = "nextSlide";

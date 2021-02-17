@@ -19,6 +19,15 @@ const App = () => {
     }
   };
 
+  const keySlide = (e) => {
+    if (e.key === "ArrowLeft") {
+      setIndex(index - 1);
+    }
+    if (e.key === "ArrowRight") {
+      setIndex(index + 1);
+    }
+  };
+
   useEffect(() => {
     const lastIndex = data.length - 1;
     if (index < 0) setIndex(lastIndex);
@@ -37,6 +46,13 @@ const App = () => {
     window.addEventListener("click", checkTarget);
     return () => {
       window.removeEventListener("click", checkTarget);
+    };
+  });
+
+  useEffect(() => {
+    window.addEventListener("keyup", keySlide);
+    return () => {
+      window.removeEventListener("keyup", keySlide);
     };
   });
 
